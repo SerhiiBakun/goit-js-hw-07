@@ -16,3 +16,7 @@ const makeGalleryItems = galleryItems.map(item => makeGalleryItemMarkup(item)).j
 
 const galleryEl = document.querySelector(".gallery");
 galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
+
+function onGalleryLinkClick(evt) {
+	evt.preventDefault();
+}
