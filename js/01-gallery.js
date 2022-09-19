@@ -22,7 +22,7 @@ galleryEl.addEventListener("click", onGalleryClick);
 
 const instance = basicLightbox.create(
 	`
-    <img src="" width="800" height="600">
+    <img width="800" height="600">
 `,
 	{
 		onShow: instance => {
