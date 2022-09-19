@@ -36,11 +36,16 @@ function onGalleryClick(evt) {
 		return;
 	}
 
+	getBasicLightbox(evt.target);
+}
+
+function getBasicLightbox(img) {
 	instance.show();
 
 	const basicLightboxImg = document.querySelector(".basicLightbox__placeholder > img");
-	basicLightboxImg.src = evt.target.dataset.source;
-	basicLightboxImg.alt = evt.target.alt;
+
+	basicLightboxImg.src = img.dataset.source;
+	basicLightboxImg.alt = img.alt;
 }
 
 function onEscape(evt) {
