@@ -20,19 +20,14 @@ galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
 
 galleryEl.addEventListener("click", onGalleryClick);
 
-const instance = basicLightbox.create(
-	`
-    <img width="800" height="600">
-`,
-	{
-		onShow: instance => {
-			window.addEventListener("keydown", onEscape);
-		},
-		onClose: instance => {
-			window.removeEventListener("keydown", onEscape);
-		},
+const instance = basicLightbox.create(`<img>`, {
+	onShow: instance => {
+		window.addEventListener("keydown", onEscape);
 	},
-);
+	onClose: instance => {
+		window.removeEventListener("keydown", onEscape);
+	},
+});
 
 function onGalleryClick(evt) {
 	evt.preventDefault();
