@@ -20,36 +20,36 @@ galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
 
 galleryEl.addEventListener("click", onGalleryClick);
 
+const instance = basicLightbox.create(
+	`
+    <img src="" width="800" height="600">
+`,
+	{
+		onShow: instance => {
+			window.addEventListener("keydown", onEscape);
+		},
+		onClose: instance => {
+			window.removeEventListener("keydown", onEscape);
+		},
+	},
+);
+
 function onGalleryClick(evt) {
+	evt.preventDefault();
+
 	if (evt.target.nodeName !== "IMG") {
 		return;
 	}
-	evt.preventDefault();
-
-	const urlOriginalImg = evt.target.dataset.source;
-
-	onBasicLightbox(urlOriginalImg);
-}
-
-function onBasicLightbox(url) {
-	const instance = basicLightbox.create(
-		`
-    <img src="${url}" width="800" height="600">
-`,
-		{
-			onShow: instance => {
-				window.addEventListener("keydown", onEscape);
-			},
-		},
-	);
 
 	instance.show();
+
+	const basicLightboxImg = document.querySelector(".basicLightbox__placeholder > img");
+	basicLightboxImg.src = evt.target.dataset.source;
+	basicLightboxImg.alt = evt.target.alt;
 }
 
 function onEscape(evt) {
 	if (evt.code === "Escape") {
-		const instance = document.querySelector(".basicLightbox");
-		instance.remove();
-		window.removeEventListener("keydown", onEscape);
+		instance.close();
 	}
 }
