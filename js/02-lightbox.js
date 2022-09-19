@@ -16,17 +16,13 @@ galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
 
 galleryEl.addEventListener("click", onGalleryClick);
 
+let lightbox = new SimpleLightbox(".gallery a", {
+	captionType: "attr",
+	captionsData: "alt",
+	captionPosition: "bottom",
+	captionDelay: 250,
+});
+
 function onGalleryClick(evt) {
 	evt.preventDefault();
-
-	if (evt.target.nodeName !== "IMG") {
-		return;
-	}
-
-	let lightbox = new SimpleLightbox(".gallery a", {
-		captionType: "attr",
-		captionsData: "alt",
-		captionPosition: "bottom",
-		captionDelay: 250,
-	});
 }
