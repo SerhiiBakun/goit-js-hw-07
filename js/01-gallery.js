@@ -20,7 +20,7 @@ galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
 
 galleryEl.addEventListener("click", onGalleryClick);
 
-const instance = basicLightbox.create(`<img>`, {
+const instance = basicLightbox.create(`<img class="basicLightbox__img">`, {
 	onShow: instance => {
 		window.addEventListener("keydown", onEscape);
 	},
@@ -42,8 +42,7 @@ function onGalleryClick(evt) {
 function getBasicLightbox(img) {
 	instance.show();
 
-	const basicLightboxImg = document.querySelector(".basicLightbox__placeholder > img");
-
+	const basicLightboxImg = document.querySelector(".basicLightbox__img");
 	basicLightboxImg.src = img.dataset.source;
 	basicLightboxImg.alt = img.alt;
 }
