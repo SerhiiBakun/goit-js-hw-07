@@ -1,8 +1,6 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
 
-console.log(galleryItems);
-
 const makeGalleryItemMarkup = ({ original, description, preview }) => {
 	return `
   <div class="gallery__item">
