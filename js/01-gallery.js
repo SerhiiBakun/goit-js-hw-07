@@ -15,8 +15,41 @@ const makeGalleryItemMarkup = ({ original, description, preview }) => {
 const makeGalleryItems = galleryItems.map(item => makeGalleryItemMarkup(item)).join("");
 
 const galleryEl = document.querySelector(".gallery");
+
 galleryEl.insertAdjacentHTML("afterbegin", makeGalleryItems);
 
-function onGalleryLinkClick(evt) {
+galleryEl.addEventListener("click", onGalleryClick);
+
+function onGalleryClick(evt) {
+	if (evt.target.nodeName !== "IMG") {
+		return;
+	}
 	evt.preventDefault();
+
+	const urlOriginalImg = evt.target.dataset.source;
+
+	onBasicLightbox(urlOriginalImg);
+}
+
+function onBasicLightbox(url) {
+	const instance = basicLightbox.create(
+		`
+    <img src="${url}" width="800" height="600">
+`,
+		{
+			onShow: instance => {
+				window.addEventListener("keydown", onEscape);
+			},
+		},
+	);
+
+	instance.show();
+}
+
+function onEscape(evt) {
+	if (evt.code === "Escape") {
+		const instance = document.querySelector(".basicLightbox");
+		instance.remove();
+		window.removeEventListener("keydown", onEscape);
+	}
 }
